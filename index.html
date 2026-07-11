@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARMY WORLD | عالم الآرمي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;800;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0a0614;
+  --void2:#140a26;
+  --void3:#1c1033;
+  --purple:#8b5cf6;
+  --purple-deep:#5b21b6;
+  --purple-glow:#a78bfa;
+  --magenta:#ec4899;
+  --gold:#fbbf24;
+  --lavender:#e9e2ff;
+  --line:rgba(167,139,250,.25);
+  --font-display:'Cairo',sans-serif;
+  --font-body:'Tajawal',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--void);
+  color:var(--lavender);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  position:relative;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(139,92,246,.25), transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(236,72,153,.18), transparent 35%),
+    radial-gradient(circle at 50% 90%, rgba(139,92,246,.2), transparent 45%);
+  pointer-events:none;
+  z-index:0;
+}
+.wrap{position:relative;z-index:1;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--purple);color:#fff;}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--void);}
+::-webkit-scrollbar-thumb{background:var(--purple-deep);border-radius:10px;}
+
+/* ---------- NAV ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(10,6,20,.75);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  max-width:1200px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{
+  font-family:var(--font-display);font-weight:900;font-size:1.4rem;
+  letter-spacing:.5px;
+  background:linear-gradient(90deg,var(--purple-glow),var(--magenta));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  display:flex;align-items:center;gap:8px;
+}
+.logo .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);}
+.navlinks{display:flex;gap:22px;font-weight:700;font-size:.92rem;}
+.navlinks a{opacity:.85;transition:.25s;position:relative;padding:4px 0;}
+.navlinks a:hover{opacity:1;color:var(--purple-glow);}
+.navright{display:flex;align-items:center;gap:10px;}
+#langBtn{
+  border:1px solid var(--line);background:var(--void2);color:var(--lavender);
+  padding:9px 16px;border-radius:30px;font-family:var(--font-display);font-weight:700;
+  cursor:pointer;font-size:.85rem;transition:.25s;
+}
+#langBtn:hover{background:var(--purple-deep);border-color:var(--purple);}
+.burger{display:none;background:none;border:none;color:var(--lavender);font-size:1.4rem;cursor:pointer;}
+@media(max-width:820px){.navlinks{display:none;}.burger{display:block;}}
+
+/* ---------- HERO ---------- */
+.hero{
+  max-width:1200px;margin:0 auto;padding:90px 24px 60px;
+  text-align:center;position:relative;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--line);padding:7px 18px;border-radius:30px;
+  font-size:.8rem;font-weight:700;color:var(--purple-glow);margin-bottom:26px;
+  background:rgba(139,92,246,.08);
+}
+.eyebrow span.pulse{width:7px;height:7px;border-radius:50%;background:var(--magenta);box-shadow:0 0 10px var(--magenta);animation:blink 1.6s infinite;}
+@keyframes blink{50%{opacity:.2}}
+h1.title{
+  font-family:var(--font-display);font-weight:900;
+  font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.05;letter-spacing:-1px;
+}
+h1.title .g{
+  background:linear-gradient(100deg,var(--purple-glow),var(--magenta) 55%,var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.subtitle{
+  max-width:620px;margin:24px auto 0;font-size:1.08rem;line-height:1.9;color:#c9bdf0;
+}
+.hero-cta{display:flex;gap:14px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
+.btn{
+  font-family:var(--font-display);font-weight:800;font-size:.95rem;
+  padding:14px 30px;border-radius:14px;cursor:pointer;border:none;transition:.25s;
+}
+.btn-primary{background:linear-gradient(100deg,var(--purple),var(--magenta));color:#fff;box-shadow:0 8px 30px -8px rgba(139,92,246,.7);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 34px -8px rgba(139,92,246,.9);}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--lavender);}
+.btn-ghost:hover{border-color:var(--purple);background:rgba(139,92,246,.1);}
+
+/* Purple heart signature */
+.heart-zone{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+#purpleHeart{
+  width:88px;height:88px;cursor:pointer;filter:drop-shadow(0 0 18px rgba(139,92,246,.75));
+  transition:transform .2s;user-select:none;
+}
+#purpleHeart:active{transform:scale(.85);}
+.heart-count{font-family:var(--font-display);font-weight:800;font-size:.95rem;color:var(--gold);}
+.floating-heart{
+  position:fixed;font-size:1.6rem;pointer-events:none;z-index:80;
+  animation:floatUp 2.4s ease-out forwards;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1) rotate(0);opacity:1;}
+  100%{transform:translateY(-420px) scale(1.5) rotate(20deg);opacity:0;}
+}
+
+/* ---------- STATS / DEBUT TIMER ---------- */
+.stats-band{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,rgba(139,92,246,.08),rgba(236,72,153,.06));
+}
+.stats-inner{
+  max-width:1200px;margin:0 auto;padding:34px 24px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;
+}
+@media(max-width:760px){.stats-inner{grid-template-columns:repeat(2,1fr);}}
+.stat-num{font-family:var(--font-display);font-weight:900;font-size:1.9rem;color:var(--purple-glow);}
+.stat-label{font-size:.78rem;color:#b2a3dd;margin-top:4px;font-weight:700;}
+
+/* ---------- SECTION SHELL ---------- */
+section{max-width:1200px;margin:0 auto;padding:90px 24px;}
+.sec-head{text-align:center;margin-bottom:54px;}
+.sec-eyebrow{font-family:var(--font-display);font-weight:800;color:var(--magenta);font-size:.82rem;letter-spacing:2px;}
+.sec-title{font-family:var(--font-display);font-weight:900;font-size:clamp(1.9rem,4vw,2.8rem);margin-top:10px;}
+.sec-sub{color:#b2a3dd;max-width:560px;margin:14px auto 0;line-height:1.8;}
+
+/* ---------- MEMBERS ---------- */
+.members-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;}
+.m-card{
+  background:linear-gradient(160deg,var(--void2),var(--void3));
+  border:1px solid var(--line);border-radius:20px;padding:22px 16px;text-align:center;
+  cursor:pointer;transition:.3s;position:relative;overflow:hidden;
+}
+.m-card:hover{transform:translateY(-6px);border-color:var(--purple);box-shadow:0 16px 34px -14px rgba(139,92,246,.6);}
+.m-avatar{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:900;font-size:1.3rem;color:#fff;
+}
+.m-name{font-family:var(--font-display);font-weight:800;font-size:1.05rem;}
+.m-role{font-size:.75rem;color:var(--gold);font-weight:700;margin-top:4px;}
+.m-fact{
+  font-size:.78rem;color:#c9bdf0;margin-top:10px;line-height:1.6;
+  max-height:0;opacity:0;overflow:hidden;transition:.35s;
+}
+.m-card.open .m-fact{max-height:120px;opacity:1;margin-top:12px;}
+.m-tap{font-size:.65rem;color:#8b7ab0;margin-top:8px;}
+
+/* ---------- GAME TABS ---------- */
+.tabbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:38px;}
+.tab-btn{
+  font-family:var(--font-display);font-weight:800;font-size:.85rem;
+  padding:11px 20px;border-radius:12px;border:1px solid var(--line);
+  background:var(--void2);color:#c9bdf0;cursor:pointer;transition:.25s;
+}
+.tab-btn.active,.tab-btn:hover{background:linear-gradient(100deg,var(--purple),var(--magenta));color:#fff;border-color:transparent;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+.game-card{
+  background:linear-gradient(160deg,var(--void2),var(--void3));
+  border:1px solid var(--line);border-radius:22px;padding:34px;
+}
+@media(max-width:600px){.game-card{padding:22px;}}
+
+/* Quiz */
+#quizProgress{height:6px;background:var(--void);border-radius:6px;overflow:hidden;margin-bottom:26px;}
+#quizProgressBar{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--magenta));transition:.4s;}
+.quiz-q{font-family:var(--font-display);font-weight:800;font-size:1.25rem;margin-bottom:22px;}
+.quiz-opts{display:grid;gap:12px;}
+.quiz-opt{
+  text-align:start;padding:16px 18px;border-radius:14px;border:1px solid var(--line);
+  background:var(--void);color:var(--lavender);cursor:pointer;font-family:var(--font-body);font-weight:600;
+  font-size:.95rem;transition:.2s;
+}
+.quiz-opt:hover{border-color:var(--purple);background:rgba(139,92,246,.12);}
+.quiz-opt.correct{border-color:#34d399;background:rgba(52,211,153,.15);}
+.quiz-opt.wrong{border-color:#f87171;background:rgba(248,113,113,.15);}
+.quiz-result{text-align:center;}
+.quiz-result .rank{
+  font-family:var(--font-display);font-weight:900;font-size:2.1rem;
+  background:linear-gradient(100deg,var(--purple-glow),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;margin:14px 0;
+}
+
+/* Bias match */
+.bm-question{font-family:var(--font-display);font-weight:800;font-size:1.2rem;text-align:center;margin-bottom:26px;}
+.bm-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:560px){.bm-row{grid-template-columns:1fr;}}
+.bm-choice{
+  padding:26px 16px;border-radius:16px;border:1px solid var(--line);background:var(--void);
+  cursor:pointer;text-align:center;font-weight:700;transition:.2s;font-size:1rem;
+}
+.bm-choice:hover{border-color:var(--magenta);background:rgba(236,72,153,.12);transform:scale(1.02);}
+.bm-result-card{text-align:center;}
+.bm-line-name{font-family:var(--font-display);font-weight:900;font-size:2rem;color:var(--purple-glow);margin:12px 0;}
+
+/* Clicker */
+.clicker-wrap{text-align:center;}
+#clickerZone{
+  width:170px;height:170px;border-radius:50%;margin:20px auto;cursor:pointer;
+  background:radial-gradient(circle at 35% 30%,var(--purple-glow),var(--purple-deep) 70%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:900;font-size:1.1rem;color:#fff;
+  box-shadow:0 0 40px rgba(139,92,246,.55);user-select:none;transition:transform .08s;
+}
+#clickerZone:active{transform:scale(.92);}
+.clicker-stats{display:flex;justify-content:center;gap:40px;margin-top:18px;}
+.clicker-num{font-family:var(--font-display);font-weight:900;font-size:2rem;color:var(--gold);}
+.clicker-label{font-size:.78rem;color:#b2a3dd;font-weight:700;}
+
+/* Memory game */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:460px;margin:0 auto;}
+@media(max-width:480px){.memory-grid{grid-template-columns:repeat(4,1fr);gap:8px;}}
+.mem-card{
+  aspect-ratio:1/1;border-radius:14px;background:var(--void);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:1.9rem;cursor:pointer;
+  transition:.25s;
+}
+.mem-card.flipped,.mem-card.matched{background:linear-gradient(160deg,var(--purple-deep),var(--purple));}
+.mem-card.matched{opacity:.55;cursor:default;}
+.memory-meta{text-align:center;margin-top:20px;font-weight:700;color:#c9bdf0;}
+
+/* ---------- NEWS / TIMELINE ---------- */
+.timeline{position:relative;padding-inline-start:28px;}
+.timeline::before{
+  content:'';position:absolute;inset-inline-start:6px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,var(--purple),var(--magenta),var(--gold));
+}
+.tl-item{position:relative;padding-bottom:34px;padding-inline-start:26px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  position:absolute;inset-inline-start:-28px;top:2px;width:14px;height:14px;border-radius:50%;
+  background:var(--purple-glow);box-shadow:0 0 12px var(--purple-glow);border:2px solid var(--void);
+}
+.tl-year{font-family:var(--font-display);font-weight:900;color:var(--gold);font-size:.85rem;}
+.tl-card{
+  background:var(--void2);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:8px;
+  transition:.25s;
+}
+.tl-card:hover{border-color:var(--purple);transform:translateX(2px);}
+.tl-title{font-family:var(--font-display);font-weight:800;font-size:1.05rem;}
+.tl-desc{font-size:.87rem;color:#c9bdf0;margin-top:6px;line-height:1.7;}
+.tl-tag{
+  display:inline-block;font-size:.68rem;font-weight:800;color:var(--magenta);
+  border:1px solid rgba(236,72,153,.4);padding:3px 10px;border-radius:20px;margin-top:10px;
+}
+
+/* achievement stat chips */
+.ach-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:50px;}
+.ach-chip{
+  background:linear-gradient(160deg,var(--void2),var(--void3));border:1px solid var(--line);
+  border-radius:16px;padding:20px;text-align:center;
+}
+.ach-chip .num{font-family:var(--font-display);font-weight:900;font-size:1.7rem;color:var(--purple-glow);}
+.ach-chip .lbl{font-size:.74rem;color:#b2a3dd;margin-top:4px;font-weight:700;line-height:1.5;}
+
+/* ---------- DEBATES ---------- */
+.debate-card{
+  background:linear-gradient(160deg,var(--void2),var(--void3));border:1px solid var(--line);
+  border-radius:20px;padding:26px;margin-bottom:22px;
+}
+.debate-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.debate-icon{font-size:1.4rem;}
+.debate-title{font-family:var(--font-display);font-weight:800;font-size:1.1rem;}
+.debate-sides{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:640px){.debate-sides{grid-template-columns:1fr;}}
+.side{border-radius:14px;padding:16px 18px;border:1px solid var(--line);background:var(--void);}
+.side.army{border-inline-start:3px solid var(--purple);}
+.side.critic{border-inline-start:3px solid var(--magenta);}
+.side-label{font-family:var(--font-display);font-weight:800;font-size:.78rem;margin-bottom:8px;}
+.side.army .side-label{color:var(--purple-glow);}
+.side.critic .side-label{color:var(--magenta);}
+.side-text{font-size:.86rem;line-height:1.75;color:#c9bdf0;}
+.vote-row{display:flex;gap:10px;margin-top:16px;align-items:center;}
+.vote-btn{
+  flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--void);
+  color:var(--lavender);font-weight:700;cursor:pointer;font-size:.82rem;transition:.2s;
+}
+.vote-btn:hover{border-color:var(--purple);}
+.vote-bar-wrap{height:8px;border-radius:8px;background:var(--void);overflow:hidden;margin-top:12px;display:flex;}
+.vote-bar-a{height:100%;background:linear-gradient(90deg,var(--purple),var(--purple-glow));transition:.4s;}
+.vote-bar-b{height:100%;background:linear-gradient(90deg,var(--magenta),#f472b6);transition:.4s;}
+.vote-pct{display:flex;justify-content:space-between;font-size:.72rem;color:#8b7ab0;margin-top:6px;font-weight:700;}
+
+/* ---------- TICKER ---------- */
+.ticker-band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--void2);padding:16px 0;overflow:hidden;}
+.ticker-track{display:flex;gap:50px;white-space:nowrap;animation:scroll 26s linear infinite;font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--purple-glow);}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+[dir="rtl"] .ticker-track{animation-name:scrollRtl;}
+@keyframes scrollRtl{from{transform:translateX(0);}to{transform:translateX(50%);}}
+
+/* ---------- WALL ---------- */
+.wall-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.wall-card{
+  background:var(--void2);border:1px solid var(--line);border-radius:18px;padding:22px;
+}
+.wall-tag{font-family:var(--font-display);font-weight:800;color:var(--gold);font-size:.78rem;}
+.wall-text{margin-top:10px;line-height:1.8;font-size:.92rem;color:#dcd2ff;}
+.wall-name{margin-top:14px;font-weight:800;color:var(--purple-glow);font-size:.82rem;}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);padding:50px 24px 30px;text-align:center;}
+.footer-logo{font-family:var(--font-display);font-weight:900;font-size:1.3rem;color:var(--purple-glow);}
+.footer-disclaimer{max-width:560px;margin:16px auto;font-size:.8rem;color:#8b7ab0;line-height:1.8;}
+.footer-bottom{font-size:.75rem;color:#5f4f85;margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="dot"></span><span data-i18n="brand">عالم الآرمي</span></div>
+    <nav class="navlinks">
+      <a href="#members" data-i18n="nav1">الأعضاء</a>
+      <a href="#news" data-i18n="navNews">أخبار وإنجازات</a>
+      <a href="#games" data-i18n="nav2">الألعاب</a>
+      <a href="#debates" data-i18n="navDebates">نقاط جدل</a>
+      <a href="#wall" data-i18n="nav3">حائط الآرمي</a>
+    </nav>
+    <div class="navright">
+      <button id="langBtn" onclick="toggleLang()">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:90px;">
+  <div class="eyebrow"><span class="pulse"></span><span data-i18n="eyebrow">موقع آرمي غير رسمي • صنع بحب</span></div>
+  <h1 class="title" data-i18n="heroTitle">هل أنت <span class="g">آرمي</span> حقيقي؟</h1>
+  <p class="subtitle" data-i18n="heroSub">مساحة للآرمي فقط. اختبارات، ألعاب، وكل ما يخص بانقتان في مكان واحد. ادخل، اثبت ولاءك، وخلّي الشغف يتكلم.</p>
+  <div class="hero-cta">
+    <button class="btn btn-primary" onclick="scrollToId('games')" data-i18n="ctaPlay">ابدأ التحدي</button>
+    <button class="btn btn-ghost" onclick="scrollToId('members')" data-i18n="ctaMembers">تعرف على الأعضاء</button>
+  </div>
+  <div class="heart-zone">
+    <svg id="purpleHeart" viewBox="0 0 24 24" onclick="sendHeart(event)">
+      <path fill="#8b5cf6" d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2 4.5 5.6 4c2.1-.3 3.9.8 6.4 3.5C14.5 4.8 16.3 3.7 18.4 4c3.6.5 5.2 4.1 3.6 7.7C19.5 16.4 12 21 12 21z"/>
+    </svg>
+    <div class="heart-count"><span id="heartCount">0</span> <span data-i18n="heartsLabel">قلب أرجواني أُرسل</span></div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="stats-inner">
+    <div><div class="stat-num" id="daysSinceDebut">0</div><div class="stat-label" data-i18n="statDays">يوم منذ الظهور الأول</div></div>
+    <div><div class="stat-num">7</div><div class="stat-label" data-i18n="statMembers">أعضاء</div></div>
+    <div><div class="stat-num">2013</div><div class="stat-label" data-i18n="statYear">سنة البداية</div></div>
+    <div><div class="stat-num">∞</div><div class="stat-label" data-i18n="statLove">حب بلا حدود</div></div>
+  </div>
+</div>
+
+<!-- MEMBERS -->
+<section id="members">
+  <div class="sec-head">
+    <div class="sec-eyebrow" data-i18n="membersEyebrow">سبعة، فرقة واحدة</div>
+    <div class="sec-title" data-i18n="membersTitle">الأعضاء</div>
+    <p class="sec-sub" data-i18n="membersSub">اضغط على أي بطاقة لتكتشف معلومة سريعة.</p>
+  </div>
+  <div class="members-grid" id="membersGrid"></div>
+</section>
+
+<!-- NEWS & ACHIEVEMENTS -->
+<section id="news">
+  <div class="sec-head">
+    <div class="sec-eyebrow" data-i18n="newsEyebrow">التاريخ يتكلم</div>
+    <div class="sec-title" data-i18n="newsTitle">أخبار وإنجازات</div>
+    <p class="sec-sub" data-i18n="newsSub">من فرقة ناشئة إلى ظاهرة عالمية — أبرز محطات بانقتان.</p>
+  </div>
+  <div class="ach-chips" id="achChips"></div>
+  <div class="timeline" id="newsTimeline"></div>
+</section>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="sec-head">
+    <div class="sec-eyebrow" data-i18n="gamesEyebrow">اختبر نفسك</div>
+    <div class="sec-title" data-i18n="gamesTitle">ألعاب و تحديات الآرمي</div>
+    <p class="sec-sub" data-i18n="gamesSub">أربع تحديات لتثبت مستوى شغفك.</p>
+  </div>
+
+  <div class="tabbar">
+    <button class="tab-btn active" data-tab="quiz" onclick="switchTab('quiz')" data-i18n="tabQuiz">🧠 تريفيا</button>
+    <button class="tab-btn" data-tab="bias" onclick="switchTab('bias')" data-i18n="tabBias">💜 من هو بايسك</button>
+    <button class="tab-btn" data-tab="clicker" onclick="switchTab('clicker')" data-i18n="tabClicker">⚡ اختبار الطاقة</button>
+    <button class="tab-btn" data-tab="memory" onclick="switchTab('memory')" data-i18n="tabMemory">🔮 لعبة الذاكرة</button>
+  </div>
+
+  <!-- QUIZ PANEL -->
+  <div class="tab-panel active" id="panel-quiz">
+    <div class="game-card">
+      <div id="quizProgress"><div id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </div>
+
+  <!-- BIAS PANEL -->
+  <div class="tab-panel" id="panel-bias">
+    <div class="game-card">
+      <div id="biasArea"></div>
+    </div>
+  </div>
+
+  <!-- CLICKER PANEL -->
+  <div class="tab-panel" id="panel-clicker">
+    <div class="game-card clicker-wrap">
+      <div class="sec-eyebrow" data-i18n="clickerHead">لديك 10 ثوانٍ فقط</div>
+      <div id="clickerZone" onclick="clickBomb()"><span id="clickerText" data-i18n="clickerStart">اضغط للبدء</span></div>
+      <div class="clicker-stats">
+        <div><div class="clicker-num" id="clickerCount">0</div><div class="clicker-label" data-i18n="clickerClicks">ضغطة</div></div>
+        <div><div class="clicker-num" id="clickerTime">10</div><div class="clicker-label" data-i18n="clickerSeconds">ثانية</div></div>
+      </div>
+      <div class="memory-meta" id="clickerResult"></div>
+    </div>
+  </div>
+
+  <!-- MEMORY PANEL -->
+  <div class="tab-panel" id="panel-memory">
+    <div class="game-card">
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="memory-meta" id="memoryMeta"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEBATES -->
+<section id="debates">
+  <div class="sec-head">
+    <div class="sec-eyebrow" data-i18n="debatesEyebrow">لا يتفق الجميع</div>
+    <div class="sec-title" data-i18n="debatesTitle">نقاط جدل</div>
+    <p class="sec-sub" data-i18n="debatesSub">قصص فيها وجهتا نظر — الآرمي مقابل النقاد. صوّت مع الجهة التي تقنعك أكثر.</p>
+  </div>
+  <div id="debatesArea"></div>
+</section>
+
+<div class="ticker-band">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- WALL -->
+<section id="wall">
+  <div class="sec-head">
+    <div class="sec-eyebrow" data-i18n="wallEyebrow">صوت الآرمي</div>
+    <div class="sec-title" data-i18n="wallTitle">حائط الآرمي</div>
+    <p class="sec-sub" data-i18n="wallSub">كلمات من قلوب المعجبين حول العالم.</p>
+  </div>
+  <div class="wall-grid" id="wallGrid"></div>
+</section>
+
+<footer>
+  <div class="footer-logo" data-i18n="brand">عالم الآرمي</div>
+  <p class="footer-disclaimer" data-i18n="disclaimer">هذا موقع معجبين غير رسمي صنعه الآرمي للآرمي. غير تابع لـ HYBE أو BIGHIT MUSIC أو الأعضاء أنفسهم. كل المحتوى لأغراض ترفيهية فقط، تحية محبة لعالم بانقتان.</p>
+  <div class="footer-bottom">© 2026 ARMY WORLD — Made with 💜</div>
+</footer>
+
+</div>
+
+<script>
+/* ================= I18N ================= */
+const dict = {
+  brand:{ar:"عالم الآرمي",en:"ARMY WORLD"},
+  nav1:{ar:"الأعضاء",en:"Members"},
+  nav2:{ar:"الألعاب",en:"Games"},
+  nav3:{ar:"حائط الآرمي",en:"ARMY Wall"},
+  navNews:{ar:"أخبار وإنجازات",en:"News & Achievements"},
+  navDebates:{ar:"نقاط جدل",en:"Hot Debates"},
+  newsEyebrow:{ar:"التاريخ يتكلم",en:"History speaks"},
+  newsTitle:{ar:"أخبار وإنجازات",en:"News & Achievements"},
+  newsSub:{ar:"من فرقة ناشئة إلى ظاهرة عالمية — أبرز محطات بانقتان.",en:"From a rookie group to a global phenomenon — Bangtan's biggest milestones."},
+  debatesEyebrow:{ar:"لا يتفق الجميع",en:"Not everyone agrees"},
+  debatesTitle:{ar:"نقاط جدل",en:"Hot Debates"},
+  debatesSub:{ar:"قصص فيها وجهتا نظر — الآرمي مقابل النقاد. صوّت مع الجهة التي تقنعك أكثر.",en:"Stories with two sides — ARMY vs. critics. Vote for the take that convinces you more."},
+  voteArmy:{ar:"أتفق مع الآرمي",en:"Side with ARMY"},
+  voteCritic:{ar:"أتفق مع النقاد",en:"Side with critics"},
+  eyebrow:{ar:"موقع آرمي غير رسمي • صنع بحب",en:"Unofficial ARMY hub • made with love"},
+  heroSub:{ar:"مساحة للآرمي فقط. اختبارات، ألعاب، وكل ما يخص بانقتان في مكان واحد. ادخل، اثبت ولاءك، وخلّي الشغف يتكلم.",en:"A space built for ARMY. Quizzes, games and everything Bangtan in one place. Step in, prove your loyalty, let the passion speak."},
+  ctaPlay:{ar:"ابدأ التحدي",en:"Start the challenge"},
+  ctaMembers:{ar:"تعرف على الأعضاء",en:"Meet the members"},
+  heartsLabel:{ar:"قلب أرجواني أُرسل",en:"purple hearts sent"},
+  statDays:{ar:"يوم منذ الظهور الأول",en:"days since debut"},
+  statMembers:{ar:"أعضاء",en:"members"},
+  statYear:{ar:"سنة البداية",en:"debut year"},
+  statLove:{ar:"حب بلا حدود",en:"boundless love"},
+  membersEyebrow:{ar:"سبعة، فرقة واحدة",en:"Seven, one team"},
+  membersTitle:{ar:"الأعضاء",en:"The Members"},
+  membersSub:{ar:"اضغط على أي بطاقة لتكتشف معلومة سريعة.",en:"Tap any card to reveal a quick fact."},
+  gamesEyebrow:{ar:"اختبر نفسك",en:"Test yourself"},
+  gamesTitle:{ar:"ألعاب و تحديات الآرمي",en:"ARMY Games & Challenges"},
+  gamesSub:{ar:"أربع تحديات لتثبت مستوى شغفك.",en:"Four challenges to prove how deep your love runs."},
+  tabQuiz:{ar:"🧠 تريفيا",en:"🧠 Trivia"},
+  tabBias:{ar:"💜 من هو بايسك",en:"💜 Find Your Bias"},
+  tabClicker:{ar:"⚡ اختبار الطاقة",en:"⚡ Energy Test"},
+  tabMemory:{ar:"🔮 لعبة الذاكرة",en:"🔮 Memory Game"},
+  clickerHead:{ar:"لديك 10 ثوانٍ فقط",en:"You've got 10 seconds"},
+  clickerStart:{ar:"اضغط للبدء",en:"Tap to start"},
+  clickerClicks:{ar:"ضغطة",en:"clicks"},
+  clickerSeconds:{ar:"ثانية",en:"seconds"},
+  wallEyebrow:{ar:"صوت الآرمي",en:"ARMY voices"},
+  wallTitle:{ar:"حائط الآرمي",en:"The ARMY Wall"},
+  wallSub:{ar:"كلمات من قلوب المعجبين حول العالم.",en:"Words from fans' hearts around the world."},
+  disclaimer:{ar:"هذا موقع معجبين غير رسمي صنعه الآرمي للآرمي. غير تابع لـ HYBE أو BIGHIT MUSIC أو الأعضاء أنفسهم. كل المحتوى لأغراض ترفيهية فقط، تحية محبة لعالم بانقتان.",en:"This is an unofficial fan-made site, built by ARMY, for ARMY. Not affiliated with HYBE, BIGHIT MUSIC, or the members themselves. All content is for entertainment purposes — a love letter to the world of Bangtan."},
+};
+let lang = 'ar';
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('langBtn').textContent = lang === 'ar' ? 'EN' : 'AR';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]) el.textContent = dict[key][lang];
+  });
+  renderMembers();
+  renderNews();
+  renderDebates();
+  renderTicker();
+  renderWall();
+  renderQuiz();
+  renderBias();
+}
+function toggleLang(){ lang = lang === 'ar' ? 'en' : 'ar'; applyLang(); }
+function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+/* ================= HEART BURST ================= */
+let heartCount = 0;
+function sendHeart(e){
+  heartCount++;
+  document.getElementById('heartCount').textContent = heartCount;
+  for(let i=0;i<6;i++){
+    const h = document.createElement('div');
+    h.className='floating-heart';
+    h.textContent='💜';
+    const rect = e.target.getBoundingClientRect();
+    h.style.left = (rect.left + rect.width/2 + (Math.random()*80-40)) + 'px';
+    h.style.top = rect.top + 'px';
+    h.style.animationDelay = (Math.random()*.3)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2600);
+  }
+}
+
+/* ================= MEMBERS ================= */
+const members = [
+  {name:{ar:"آر إم",en:"RM"}, role:{ar:"الزعيم",en:"Leader"}, color:"#7c3aed",
+   fact:{ar:"يقود الفرقة ويكتب معظم أغانيها، معروف بشغفه بالفن والمتاحف.",en:"Leads the group and writes much of their music; known for a deep love of art and museums."}},
+  {name:{ar:"جين",en:"Jin"}, role:{ar:"الأخ الأكبر",en:"Eldest"}, color:"#ec4899",
+   fact:{ar:"صوت دافئ وحس فكاهي لا يُضاهى، يلقب أحياناً بـ'الأمير الوردي'.",en:"Warm vocals and an unmatched sense of humor; sometimes nicknamed the 'Pink Prince'."}},
+  {name:{ar:"سوغا",en:"SUGA"}, role:{ar:"رابر",en:"Rapper"}, color:"#f59e0b",
+   fact:{ar:"يشتهر بإنتاجه الموسيقي العميق وأعماله الفردية تحت اسم Agust D.",en:"Known for deep music production and solo work under the name Agust D."}},
+  {name:{ar:"جي هوب",en:"J-Hope"}, role:{ar:"راقص رئيسي",en:"Main Dancer"}, color:"#22d3ee",
+   fact:{ar:"طاقته الإيجابية لا تنضب، وهو من أبرز الراقصين في صناعة الكيبوب.",en:"Endless positive energy and one of the most respected dancers in K-pop."}},
+  {name:{ar:"جيمين",en:"Jimin"}, role:{ar:"راقص رئيسي",en:"Main Dancer"}, color:"#a855f7",
+   fact:{ar:"يجمع بين قوة الأداء ورقة الصوت، وحضوره المسرحي مميز جداً.",en:"Blends powerful performance with a delicate vocal tone and standout stage presence."}},
+  {name:{ar:"في",en:"V"}, role:{ar:"مغني رئيسي",en:"Vocalist"}, color:"#4f46e5",
+   fact:{ar:"صوته العميق المميز وذوقه الفني الفريد جعلاه صوتاً لا يُنسى.",en:"His distinctive deep tone and unique artistic taste make his voice unforgettable."}},
+  {name:{ar:"جونغكوك",en:"Jungkook"}, role:{ar:"الأصغر",en:"Youngest"}, color:"#db2777",
+   fact:{ar:"يلقب بـ'العبقري القادم من كل شيء' لتعدد مواهبه الفنية والرياضية.",en:"Nicknamed the 'golden maknae' for his wide range of artistic and athletic talents."}},
+];
+function renderMembers(){
+  const grid = document.getElementById('membersGrid');
+  grid.innerHTML='';
+  members.forEach((m,i)=>{
+    const card = document.createElement('div');
+    card.className='m-card';
+    card.innerHTML = `
+      <div class="m-avatar" style="background:${m.color}">${m.name[lang][0]}</div>
+      <div class="m-name">${m.name[lang]}</div>
+      <div class="m-role">${m.role[lang]}</div>
+      <div class="m-fact">${m.fact[lang]}</div>
+      <div class="m-tap">${lang==='ar'?'اضغط للمزيد':'tap for more'}</div>
+    `;
+    card.onclick = ()=> card.classList.toggle('open');
+    grid.appendChild(card);
+  });
+}
+
+/* ================= TICKER ================= */
+const tickerItems = {
+  ar:["بورن هذا الدور، أرمي فخورة","بانقتان يكسرون الأرقام القياسية دائماً","سبع نجوم و قلب واحد","آي بيربل يو 💜","الجيش الأرجواني لا يتوقف","OT7 للأبد"],
+  en:["Borahae forever","BTS keeps breaking records","Seven stars, one heartbeat","I purple you 💜","The purple army never stops","OT7 forever"]
+};
+function renderTicker(){
+  const track = document.getElementById('tickerTrack');
+  const items = tickerItems[lang];
+  const doubled = [...items, ...items];
+  track.innerHTML = doubled.map(t=>`<span>✦ ${t}</span>`).join('');
+}
+
+/* ================= WALL ================= */
+const wall = [
+  {tag:{ar:"من السعودية",en:"From Saudi Arabia"}, text:{ar:"بانقتان علموني إني أحب نفسي قبل أي حد ثاني. شكراً ARMY على كل هالحب.",en:"BTS taught me to love myself before anyone else. Thank you ARMY for all this love."}, name:{ar:"آرمي مجهولة",en:"Anonymous ARMY"}},
+  {tag:{ar:"من مصر",en:"From Egypt"}, text:{ar:"كل مرة أسمع أغنية جديدة أحس إني في عالم ثاني، موسيقاهم دايماً توصل.",en:"Every new song feels like stepping into another world — their music always lands."}, name:{ar:"آرمي مجهولة",en:"Anonymous ARMY"}},
+  {tag:{ar:"من الجزائر",en:"From Algeria"}, text:{ar:"الآرمي مو مجرد معجبين، إحنا عائلة كبيرة حول العالم كلها.",en:"ARMY isn't just fandom, it's a family that spans the entire world."}, name:{ar:"آرمي مجهولة",en:"Anonymous ARMY"}},
+];
+function renderWall(){
+  const grid = document.getElementById('wallGrid');
+  grid.innerHTML='';
+  wall.forEach(w=>{
+    const c = document.createElement('div');
+    c.className='wall-card';
+    c.innerHTML = `<div class="wall-tag">${w.tag[lang]}</div><div class="wall-text">"${w.text[lang]}"</div><div class="wall-name">— ${w.name[lang]}</div>`;
+    grid.appendChild(c);
+  });
+}
+
+/* ================= NEWS & ACHIEVEMENTS ================= */
+const achChips = [
+  {num:"25+", lbl:{ar:"رقم قياسي في غينيس",en:"Guinness World Records"}},
+  {num:"5", lbl:{ar:"ترشيحات غرامي",en:"Grammy nominations"}},
+  {num:"67", lbl:{ar:"جائزة دايسانغ كورية",en:"Korean Daesang grand prizes"}},
+  {num:"3", lbl:{ar:"خطابات في الأمم المتحدة",en:"United Nations addresses"}},
+];
+const newsTimeline = [
+  {year:"2013", tag:{ar:"البداية",en:"The beginning"},
+   title:{ar:"الظهور الأول تحت Big Hit",en:"Official debut under Big Hit"},
+   desc:{ar:"انطلقت الفرقة بألبوم '2 Cool 4 Skool' كفرقة صغيرة من شركة ناشئة، قبل أن تصبح ظاهرة عالمية.",en:"The group launched with '2 Cool 4 Skool' as a small act from an emerging label, long before becoming a global phenomenon."}},
+  {year:"2017", tag:{ar:"اختراق عالمي",en:"Global breakthrough"},
+   title:{ar:"أول جائزة Top Social Artist بـ BBMAs",en:"First Top Social Artist win at the BBMAs"},
+   desc:{ar:"أول فرقة كيبوب تفوز بهذه الجائزة، بفضل تصويت جماهيري ضخم من الآرمي حول العالم.",en:"The first K-pop act to win this award, driven by a massive worldwide ARMY vote."}},
+  {year:"2018", tag:{ar:"منصة عالمية",en:"Global platform"},
+   title:{ar:"خطاب في الأمم المتحدة",en:"Speech at the United Nations"},
+   desc:{ar:"أول فرقة كيبوب تلقي خطاباً أمام الجمعية العامة للأمم المتحدة، برسالة عن حب الذات وتمكين الشباب.",en:"The first K-pop group to address the UN General Assembly, with a message about self-love and youth empowerment."}},
+  {year:"2019", tag:{ar:"إنجاز تاريخي",en:"Historic milestone"},
+   title:{ar:"إقفال ملعب ويمبلي",en:"Sold-out Wembley Stadium"},
+   desc:{ar:"أول فرقة كورية تُقفل حفلاتها في ملعب ويمبلي الأسطوري ضمن جولة Speak Yourself.",en:"The first Korean act to sell out the legendary Wembley Stadium during the Speak Yourself tour."}},
+  {year:"2020", tag:{ar:"صدارة عالمية",en:"Global No.1"},
+   title:{ar:"Dynamite تتصدر Billboard Hot 100",en:"'Dynamite' hits No.1 on the Billboard Hot 100"},
+   desc:{ar:"أول أغنية لفرقة كورية بالكامل تتصدر قائمة Hot 100 الأمريكية.",en:"The first song by an all-South-Korean act to top the US Hot 100 chart."}},
+  {year:"2021", tag:{ar:"اعتراف نقدي",en:"Critical recognition"},
+   title:{ar:"أول ترشيح لجائزة غرامي",en:"First Grammy nomination"},
+   desc:{ar:"ترشحوا عن 'Best Pop Duo/Group Performance'، أول ترشيح غرامي لفرقة كورية في التاريخ، وفازوا بلقب فنان العام في AMAs كأول فنان آسيوي.",en:"Nominated for Best Pop Duo/Group Performance — the first Grammy nomination ever for a Korean act — and won Artist of the Year at the AMAs as the first Asian act to do so."}},
+  {year:"2022", tag:{ar:"تخليد",en:"Hall of Fame"},
+   title:{ar:"قاعة مشاهير غينيس",en:"Guinness World Records Hall of Fame"},
+   desc:{ar:"انضموا لقاعة المشاهير بعد تحقيق أكثر من 23 رقماً قياسياً في سنوات قليلة.",en:"Inducted after setting more than 23 world records in just a few years."}},
+  {year:"2022–25", tag:{ar:"فصل جديد",en:"A new chapter"},
+   title:{ar:"الخدمة العسكرية والمسيرة الفردية",en:"Military service & solo journeys"},
+   desc:{ar:"أدى جميع الأعضاء الخدمة العسكرية الإلزامية بالتتابع، بينما استمروا بإصدار مشاريع فردية أثبتت تنوع مواهبهم.",en:"All members completed South Korea's mandatory military service in turn, while releasing solo projects that showcased their range as individual artists."}},
+  {year:"2026", tag:{ar:"العودة الكاملة",en:"Full comeback"},
+   title:{ar:"لم شمل الفرقة وألبوم جديد",en:"Group reunion & a new album"},
+   desc:{ar:"عاد الأعضاء السبعة معاً بعد الخدمة العسكرية، مع إصدارات جديدة وجولة عالمية وظهور عالمي كبير في فعاليات رياضية وثقافية.",en:"All seven members reunited after military service, with new releases, a world tour, and high-profile appearances at global sports and cultural events."}},
+];
+function renderNews(){
+  const chips = document.getElementById('achChips');
+  chips.innerHTML = achChips.map(c=>`<div class="ach-chip"><div class="num">${c.num}</div><div class="lbl">${c.lbl[lang]}</div></div>`).join('');
+  const tl = document.getElementById('newsTimeline');
+  tl.innerHTML = newsTimeline.map(item=>`
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">${item.year}</div>
+      <div class="tl-card">
+        <div class="tl-title">${item.title[lang]}</div>
+        <div class="tl-desc">${item.desc[lang]}</div>
+        <div class="tl-tag">${item.tag[lang]}</div>
+      </div>
+    </div>`).join('');
+}
+
+/* ================= DEBATES ================= */
+const debates = [
+  {icon:"🏆",
+   title:{ar:"لماذا لم تفز بانقتان بجرامي بعد؟",en:"Why hasn't BTS won a Grammy yet?"},
+   army:{ar:"خمسة ترشيحات وتاريخ يصنعونه أول فرقة كورية تدخل هذا المضمار — النقاد أنفسهم يقولون إن الترشيح وحده إنجاز ثقافي كبير.",en:"Five nominations and a trailblazing legacy as the first Korean act in the category — even critics note the nomination itself was a major cultural milestone."},
+   critic:{ar:"البعض يرى أن أكاديمية غرامي ما زالت تتردد في منح الجوائز الكبرى لفنانين غير ناطقين بالإنجليزية، بغض النظر عن نجاحهم التجاري.",en:"Some argue the Recording Academy still hesitates to award top prizes to non-English-language acts, regardless of commercial success."},
+   idA:"d1"},
+  {icon:"🗳️",
+   title:{ar:"هل الجوائز المبنية على تصويت الجمهور مقياس حقيقي؟",en:"Do fan-voted awards really measure success?"},
+   army:{ar:"الأرقام القياسية في التفاعل والتصويت تعكس حجم قاعدة جماهيرية منظمة وملتزمة بشكل غير مسبوق حول العالم.",en:"Record-breaking engagement and voting numbers reflect an unprecedented, highly organized global fanbase."},
+   critic:{ar:"نقاد الصناعة يجادلون بأن الجوائز المعتمدة على التصويت الجماهيري تقيس التنظيم الرقمي أكثر مما تقيس الجودة الفنية.",en:"Industry critics argue fan-voted categories measure digital organization more than artistic merit."},
+   idA:"d2"},
+  {icon:"🎖️",
+   title:{ar:"جدل الإعفاء من الخدمة العسكرية",en:"The military exemption debate"},
+   army:{ar:"في النهاية أدى كل عضو الخدمة كاملة بلا استثناء، رغم وجود نقاش برلماني حول إمكانية إعفائهم لتأثيرهم الثقافي.",en:"In the end every member completed full service with no exceptions, despite a parliamentary debate about a possible cultural exemption."},
+   critic:{ar:"كان هناك جدل عام واسع في كوريا حول ما إذا كان يجب تعديل القانون من أجلهم، واعتبره البعض معاملة تفضيلية غير عادلة.",en:"There was significant public debate in Korea over whether the law should be amended for them, which some viewed as unfair preferential treatment."},
+   idA:"d3"},
+  {icon:"⚔️",
+   title:{ar:"حروب المعجبين بين الفانداموم",en:"Fandom wars between fanbases"},
+   army:{ar:"معظم الآرمي يرفضون سلوكيات الكره تجاه فرق أخرى ويعتبرون أن التنافس الصحي جزء من متعة عالم الكيبوب.",en:"Most ARMY reject hateful behavior toward other fandoms and see healthy competition as part of what makes K-pop fun."},
+   critic:{ar:"نقاد الظاهرة يشيرون إلى أن التعصب المفرط من أقلية داخل فانداومات كبيرة (وليست حكراً على الآرمي) يغذي حروباً سامة على الإنترنت.",en:"Observers point out that toxic overzealousness from a minority within large fandoms (not unique to ARMY) fuels toxic online wars."},
+   idA:"d4"},
+];
+let voteState = {};
+function renderDebates(){
+  const area = document.getElementById('debatesArea');
+  area.innerHTML='';
+  debates.forEach(d=>{
+    if(!voteState[d.idA]) voteState[d.idA] = {a:50,b:50,voted:false};
+    const st = voteState[d.idA];
+    const card = document.createElement('div');
+    card.className='debate-card';
+    card.innerHTML = `
+      <div class="debate-head"><span class="debate-icon">${d.icon}</span><span class="debate-title">${d.title[lang]}</span></div>
+      <div class="debate-sides">
+        <div class="side army"><div class="side-label">${lang==='ar'?'وجهة نظر الآرمي':'ARMY perspective'}</div><div class="side-text">${d.army[lang]}</div></div>
+        <div class="side critic"><div class="side-label">${lang==='ar'?'وجهة نظر النقاد':'Critics perspective'}</div><div class="side-text">${d.critic[lang]}</div></div>
+      </div>
+      <div class="vote-row">
+        <button class="vote-btn" onclick="castVote('${d.idA}','a')">${lang==='ar'?'💜 أتفق مع الآرمي':'💜 Side with ARMY'}</button>
+        <button class="vote-btn" onclick="castVote('${d.idA}','b')">${lang==='ar'?'🎤 أتفق مع النقاد':'🎤 Side with critics'}</button>
+      </div>
+      <div class="vote-bar-wrap"><div class="vote-bar-a" style="width:${st.a}%"></div><div class="vote-bar-b" style="width:${st.b}%"></div></div>
+      <div class="vote-pct"><span>${st.a}%</span><span>${st.b}%</span></div>
+    `;
+    area.appendChild(card);
+  });
+}
+function castVote(id, side){
+  const st = voteState[id];
+  if(st.voted) return;
+  st.voted = true;
+  if(side==='a'){ st.a = Math.min(96, st.a + 8 + Math.floor(Math.random()*6)); }
+  else{ st.a = Math.max(4, st.a - (8 + Math.floor(Math.random()*6))); }
+  st.b = 100 - st.a;
+  renderDebates();
+}
+
+/* ================= TABS ================= */
+function switchTab(name){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+name));
+  if(name==='memory' && !memoryStarted){ startMemory(); }
+}
+
+/* ================= QUIZ ================= */
+const quizData = [
+  {q:{ar:"في أي سنة ظهرت فرقة BTS رسمياً؟",en:"What year did BTS officially debut?"},
+   opts:{ar:["2010","2013","2015","2018"],en:["2010","2013","2015","2018"]}, correct:1},
+  {q:{ar:"كم عدد أعضاء الفرقة؟",en:"How many members are in the group?"},
+   opts:{ar:["5","6","7","8"],en:["5","6","7","8"]}, correct:2},
+  {q:{ar:"ما هو اللون الرسمي المرتبط بالفرقة والآرمي؟",en:"What is the color most associated with the group and ARMY?"},
+   opts:{ar:["الأزرق","الأرجواني","الأخضر","الأحمر"],en:["Blue","Purple","Green","Red"]}, correct:1},
+  {q:{ar:"من هو الزعيم (الليدر) في الفرقة؟",en:"Who is the leader of the group?"},
+   opts:{ar:["جين","آر إم","سوغا","جي هوب"],en:["Jin","RM","SUGA","J-Hope"]}, correct:1},
+  {q:{ar:"ما اسم النادي الرسمي لمعجبي الفرقة؟",en:"What is the official fan club name?"},
+   opts:{ar:["ARMY","FAM","BEST","STAR"],en:["ARMY","FAM","BEST","STAR"]}, correct:0},
+  {q:{ar:"من يُلقب بـ'الأصغر' في الفرقة؟",en:"Who is known as the 'youngest' (maknae) of the group?"},
+   opts:{ar:["جونغكوك","في","جيمين","جي هوب"],en:["Jungkook","V","Jimin","J-Hope"]}, correct:0},
+];
+let quizIndex=0, quizScore=0;
+function renderQuiz(){
+  quizIndex=0; quizScore=0;
+  showQuizQuestion();
+}
+function showQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  document.getElementById('quizProgressBar').style.width = (quizIndex/quizData.length*100)+'%';
+  if(quizIndex >= quizData.length){
+    showQuizResult();
+    return;
+  }
+  const item = quizData[quizIndex];
+  area.innerHTML = `<div class="quiz-q">${quizIndex+1}. ${item.q[lang]}</div><div class="quiz-opts" id="quizOpts"></div>`;
+  const optsWrap = document.getElementById('quizOpts');
+  item.opts[lang].forEach((opt,i)=>{
+    const b = document.createElement('button');
+    b.className='quiz-opt';
+    b.textContent = opt;
+    b.onclick = ()=> answerQuiz(i, item.correct, b, optsWrap);
+    optsWrap.appendChild(b);
+  });
+}
+function answerQuiz(i, correct, btn, wrap){
+  [...wrap.children].forEach(c=>c.style.pointerEvents='none');
+  if(i===correct){ btn.classList.add('correct'); quizScore++; }
+  else{
+    btn.classList.add('wrong');
+    wrap.children[correct].classList.add('correct');
+  }
+  setTimeout(()=>{ quizIndex++; showQuizQuestion(); }, 900);
+}
+function showQuizResult(){
+  document.getElementById('quizProgressBar').style.width='100%';
+  let rank, msg;
+  const pct = quizScore/quizData.length;
+  if(pct === 1){ rank = {ar:"آرمي أسطورية 👑",en:"Legendary ARMY 👑"}; }
+  else if(pct >= .66){ rank = {ar:"آرمي حقيقية 💜",en:"Real ARMY 💜"}; }
+  else if(pct >= .33){ rank = {ar:"آرمي مبتدئة 🌱",en:"Rookie ARMY 🌱"}; }
+  else { rank = {ar:"لسه بتتعرف علينا 👀",en:"Just getting to know us 👀"}; }
+  document.getElementById('quizArea').innerHTML = `
+    <div class="quiz-result">
+      <div style="font-size:.85rem;color:#b2a3dd;">${lang==='ar'?'نتيجتك':'Your score'}</div>
+      <div class="rank">${quizScore} / ${quizData.length}</div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:800;font-size:1.3rem;">${rank[lang]}</div>
+      <button class="btn btn-primary" style="margin-top:22px;" onclick="renderQuiz()">${lang==='ar'?'أعد المحاولة':'Try again'}</button>
+    </div>`;
+}
+
+/* ================= BIAS MATCH ================= */
+const biasQuestions = [
+  {q:{ar:"اختر أجواء أغنية",en:"Pick a song vibe"}, a:{ar:"إيقاع راقص صاخب",en:"High-energy dance beat"}, b:{ar:"لحن هادئ وعاطفي",en:"Soft, emotional melody"}},
+  {q:{ar:"اختر أسلوب حياة",en:"Pick a lifestyle"}, a:{ar:"عفوي ومليء بالمزاح",en:"Spontaneous and playful"}, b:{ar:"منظم ويحب التخطيط",en:"Structured and loves planning"}},
+  {q:{ar:"اختر طاقة",en:"Pick an energy"}, a:{ar:"طاقة قوية على المسرح",en:"Powerful stage presence"}, b:{ar:"دفء هادئ وحنون",en:"Calm, gentle warmth"}},
+];
+const biasResults = [
+  {name:{ar:"آر إم",en:"RM"}, desc:{ar:"عقلية القائد الهادئة والعميقة تناسبك.",en:"You match the calm, deep leader energy."}},
+  {name:{ar:"جي هوب",en:"J-Hope"}, desc:{ar:"طاقتك الإيجابية المعدية تشبهه تماماً.",en:"Your infectious positive energy matches his perfectly."}},
+  {name:{ar:"في",en:"V"}, desc:{ar:"الغموض الفني والذوق الفريد يناسبانك.",en:"Artistic mystery and unique taste suit you."}},
+  {name:{ar:"جيمين",en:"Jimin"}, desc:{ar:"مزيج القوة والرقة هو أسلوبك.",en:"A blend of strength and softness is your style."}},
+];
+let biasIndex=0, biasScore=0;
+function renderBias(){
+  biasIndex=0; biasScore=0;
+  showBiasQuestion();
+}
+function showBiasQuestion(){
+  const area = document.getElementById('biasArea');
+  if(biasIndex >= biasQuestions.length){
+    const result = biasResults[biasScore % biasResults.length];
+    area.innerHTML = `
+      <div class="bm-result-card">
+        <div style="font-size:.85rem;color:#b2a3dd;">${lang==='ar'?'بايسك المحتمل':'Your likely bias match'}</div>
+        <div class="bm-line-name">${result.name[lang]}</div>
+        <p style="color:#c9bdf0;">${result.desc[lang]}</p>
+        <button class="btn btn-primary" style="margin-top:20px;" onclick="renderBias()">${lang==='ar'?'أعد الاختبار':'Retake quiz'}</button>
+      </div>`;
+    return;
+  }
+  const item = biasQuestions[biasIndex];
+  area.innerHTML = `
+    <div class="bm-question">${item.q[lang]}</div>
+    <div class="bm-row">
+      <div class="bm-choice" id="bmA">${item.a[lang]}</div>
+      <div class="bm-choice" id="bmB">${item.b[lang]}</div>
+    </div>`;
+  document.getElementById('bmA').onclick = ()=>{ biasScore++; biasIndex++; showBiasQuestion(); };
+  document.getElementById('bmB').onclick = ()=>{ biasIndex++; showBiasQuestion(); };
+}
+
+/* ================= CLICKER ================= */
+let clickerRunning=false, clickerCount=0, clickerTimeLeft=10, clickerInterval;
+function clickBomb(){
+  if(!clickerRunning){
+    clickerRunning=true; clickerCount=0; clickerTimeLeft=10;
+    document.getElementById('clickerResult').textContent='';
+    document.getElementById('clickerCount').textContent='0';
+    document.getElementById('clickerTime').textContent='10';
+    document.getElementById('clickerText').textContent = lang==='ar' ? 'اضغط بسرعة!' : 'Tap fast!';
+    clickerInterval = setInterval(()=>{
+      clickerTimeLeft--;
+      document.getElementById('clickerTime').textContent = clickerTimeLeft;
+      if(clickerTimeLeft<=0){
+        clearInterval(clickerInterval);
+        clickerRunning=false;
+        document.getElementById('clickerText').textContent = lang==='ar' ? 'اضغط للبدء' : 'Tap to start';
+        let level;
+        if(clickerCount>=50) level = lang==='ar'?'طاقة أسطورية! 🔥':'Legendary energy! 🔥';
+        else if(clickerCount>=30) level = lang==='ar'?'آرمي حقيقية! 💜':'Real ARMY energy! 💜';
+        else if(clickerCount>=15) level = lang==='ar'?'مو سيء إطلاقاً 🙂':'Not bad at all 🙂';
+        else level = lang==='ar'?'حاول مرة ثانية 💪':'Give it another shot 💪';
+        document.getElementById('clickerResult').textContent = level;
+      }
+    },1000);
+  } else {
+    clickerCount++;
+    document.getElementById('clickerCount').textContent = clickerCount;
+  }
+}
+
+/* ================= MEMORY GAME ================= */
+let memoryStarted=false, memFirst=null, memSecond=null, memLock=false, memMatches=0;
+const memSymbols = ['💜','🎤','💿','⭐','🎧','🥁','🎸','👑'];
+function startMemory(){
+  memoryStarted=true;
+  const pairSet = [...memSymbols, ...memSymbols].sort(()=>Math.random()-.5);
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML='';
+  memMatches=0; memFirst=null; memSecond=null; memLock=false;
+  document.getElementById('memoryMeta').textContent = lang==='ar' ? `أزواج متطابقة: 0 / ${memSymbols.length}` : `Matched pairs: 0 / ${memSymbols.length}`;
+  pairSet.forEach((sym)=>{
+    const card = document.createElement('div');
+    card.className='mem-card';
+    card.dataset.symbol = sym;
+    card.onclick = ()=>flipMemCard(card);
+    grid.appendChild(card);
+  });
+}
+function flipMemCard(card){
+  if(memLock || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  card.classList.add('flipped');
+  card.textContent = card.dataset.symbol;
+  if(!memFirst){ memFirst = card; return; }
+  memSecond = card;
+  memLock = true;
+  if(memFirst.dataset.symbol === memSecond.dataset.symbol){
+    memFirst.classList.add('matched');
+    memSecond.classList.add('matched');
+    memMatches++;
+    document.getElementById('memoryMeta').textContent = lang==='ar' ? `أزواج متطابقة: ${memMatches} / ${memSymbols.length}` : `Matched pairs: ${memMatches} / ${memSymbols.length}`;
+    resetMemPick();
+    if(memMatches === memSymbols.length){
+      setTimeout(()=>{
+        document.getElementById('memoryMeta').textContent = lang==='ar' ? '🎉 أحسنت! أنهيت اللعبة' : '🎉 Well done! You finished the game';
+      },300);
+    }
+  } else {
+    setTimeout(()=>{
+      memFirst.classList.remove('flipped'); memFirst.textContent='';
+      memSecond.classList.remove('flipped'); memSecond.textContent='';
+      resetMemPick();
+    },700);
+  }
+}
+function resetMemPick(){ memFirst=null; memSecond=null; memLock=false; }
+
+/* ================= DEBUT COUNTER ================= */
+function updateDebutDays(){
+  const debut = new Date('2013-06-13T00:00:00Z');
+  const now = new Date();
+  const days = Math.floor((now - debut)/(1000*60*60*24));
+  document.getElementById('daysSinceDebut').textContent = days.toLocaleString(lang==='ar'?'ar':'en');
+}
+
+/* ================= INIT ================= */
+applyLang();
+updateDebutDays();
+</script>
+</body>
+</html>
